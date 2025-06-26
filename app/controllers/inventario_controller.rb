@@ -14,5 +14,6 @@ class InventarioController < ApplicationController
   end
 
   def editar
+    codigo = params[:codigo]
   end
 end

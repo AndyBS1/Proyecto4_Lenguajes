@@ -1,4 +1,9 @@
-<h1>Inventario</h1>
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+  <h1 style="margin: 0;">Inventario</h1>
+  <%= link_to ' + ', '/inventario/agregar',
+        style: 'margin-left: 260px; background-color:rgb(27, 154, 160); color: white; padding: 10px 15px;
+                border: none; border-radius: 5px; text-decoration: none; font-weight: bold;' %>
+</div>
 
 <table border="1" cellpadding="5" cellspacing="0">
   <thead>
@@ -7,6 +12,7 @@
       <th>Nombre</th>
       <th>Precio Unitario</th>
       <th>Stock</th>
+      <th>Editar</th>
     </tr>
   </thead>
   <tbody>
@@ -17,10 +23,16 @@
         <td>₡<%= producto[:precio_unitario] %></td>
         <td>
           <%= producto[:stock] %>
-          <% if producto[:stock].to_i < 5 %>
+          <% if producto[:stock].to_i <= 3 %>
             <span style="color: red;">Alerta! Stock Bajo</span>
           <% end %>
         </td>
+        <td>
+          <div style="text-align: center;">
+          <%= link_to '*', "/inventario/editar?codigo=#{producto[:codigo]}", 
+              style: 'color:rgb(27, 154, 160); text-decoration: none; text-align: center;' %>
+        </td>
+          </div>
       </tr>
     <% end %>
   </tbody>
