@@ -16,5 +16,11 @@
     "nombre": "HP Laptop 1",
     "precio": 300.0,
     "stock": 5
+  },
+  {
+    "codigo": "T004",
+    "nombre": "Camara",
+    "precio": 70.0,
+    "stock": 5
   }
 ]

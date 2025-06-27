@@ -17,7 +17,7 @@ class InventarioController < ApplicationController
 
     productos = if File.exist?(path)
                   file = File.read(path)
-                  JSON.parse(file)
+                  JSON.parse(file, symbolize_names: true)
     else
                   []
     end
@@ -29,6 +29,14 @@ class InventarioController < ApplicationController
       precio: params[:precio],
       stock: params[:stock]
     )
+
+    # Validar que el código sea único
+    # En la validacón se pasa a minuscula para evitar repetir letras con la mimsa combinacion de numeros
+    if productos.any? { |p| p[:codigo].to_s.downcase == nuevo_producto.codigo.to_s.downcase }
+      flash[:alert] = "El código '#{nuevo_producto.codigo}' no esta disponible."
+      redirect_to "/inventario/agregar"
+      return
+    end
 
     unless nuevo_producto.valido?
       flash[:alert] = "Por favor, complete todos los campos con valores válidos."
