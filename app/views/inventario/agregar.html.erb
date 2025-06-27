@@ -1,5 +1,11 @@
 <h1 style="text-align: center;">Agregar Producto</h1>
 
+<% if flash[:alert] %>
+  <div style="background-color:rgb(246, 184, 189); color:rgb(209, 24, 39); padding: 10px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #f5c2c7;">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
 <div style="
   background-color: #f0f0f0; padding: 30px;
   max-width: 500px; margin: 40px auto;

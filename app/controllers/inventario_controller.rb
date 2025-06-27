@@ -30,6 +30,12 @@ class InventarioController < ApplicationController
       stock: params[:stock]
     )
 
+    unless nuevo_producto.valido?
+      flash[:alert] = "Por favor, complete todos los campos con valores válidos."
+      redirect_to "/inventario/agregar"
+      return
+    end
+
     productos << nuevo_producto.to_hash
 
     File.write(path, JSON.pretty_generate(productos))
