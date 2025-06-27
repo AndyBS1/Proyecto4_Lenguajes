@@ -51,10 +51,67 @@ class InventarioController < ApplicationController
     redirect_to "/inventario/index", notice: "Producto agregado correctamente"
   end
 
+  def actualizar
+    path = Rails.root.join("app", "data", "productos.json")
+    productos = File.exist?(path) ? JSON.parse(File.read(path), symbolize_names: true) : []
+
+    producto = productos.find { |p| p[:codigo] == params[:codigo] }
+
+    if producto.nil?
+      flash[:alert] = "Producto no encontrado."
+      redirect_to "/inventario/index"
+      return
+    end
+
+    campo = params[:campo]
+    valor = params[:valor]
+
+    case campo
+    when "precio"
+      if valor.to_f <= 0
+        flash[:alert] = "El precio debe ser un número positivo."
+        redirect_to "/inventario/editar?codigo=#{params[:codigo]}"
+        return
+      end
+      producto[:precio] = valor.to_f
+    when "stock"
+      if valor.to_i < 0
+        flash[:alert] = "El stock debe ser un número entero positivo."
+        redirect_to "/inventario/editar?codigo=#{params[:codigo]}"
+        return
+      end
+      producto[:stock] = valor.to_i
+    else
+      flash[:alert] = "Campo inválido seleccionado."
+      redirect_to "/inventario/editar?codigo=#{params[:codigo]}"
+      return
+    end
+
+    # Se reemplaza la información del producto por el antiguo
+    productos.map! { |p| p[:codigo] == producto[:codigo] ? producto : p }
+
+    File.write(path, JSON.pretty_generate(productos))
+
+    flash[:notice] = "Producto actualizado correctamente."
+    redirect_to "/inventario/index"
+  end
+
   def agregar
   end
 
   def editar
     codigo = params[:codigo]
+    path = Rails.root.join("app", "data", "productos.json")
+
+    productos = File.exist?(path) ? JSON.parse(File.read(path), symbolize_names: true) : []
+    producto_hash = productos.find { |p| p[:codigo] == codigo }
+
+    if producto_hash.nil?
+      flash[:alert] = "Producto no encontrado."
+      redirect_to "/inventario/index"
+      return
+    end
+
+    @producto = Producto.new(**producto_hash)
   end
 end

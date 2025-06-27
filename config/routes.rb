@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   get "facturas/generar"
   get "inventario/index"
   get "inventario/agregar"
-  get "inventario/editar"
+  get "inventario/editar", to: "inventario#editar"
 
   # Ruta de Post
   post "inventario/crear", to: "inventario#crear"
+  post "/inventario/actualizar", to: "inventario#actualizar"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,2 +1,50 @@
-<h1>Inventario#editar</h1>
-<p>Find me in app/views/inventario/editar.html.erb</p>
+<h1 style="text-align: center;">Editar Producto</h1>
+
+<!-- tabla con la información actual del producto -->
+<table border="1" cellpadding="5" cellspacing="0" style="margin: 0 auto 20px auto;">
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nombre</th>
+      <th>Precio actual</th>
+      <th>Stock actual</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @producto.codigo %></td>
+      <td><%= @producto.nombre %></td>
+      <td>₡<%= @producto.precio %></td>
+      <td><%= @producto.stock %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="max-width: 600px; margin: 0 auto; background-color: #f0f0f0; padding: 20px; border-radius: 12px;">
+  <%= form_with url: "/inventario/actualizar", method: :post do %>
+    <%= hidden_field_tag :codigo, @producto.codigo %>
+
+    <div>
+      <label>Campo a editar:</label>
+      <%= select_tag :campo,
+          options_for_select([["Precio", "precio"], ["Stock", "stock"]]),
+          style: 'border-radius: 20px; border: 1px solid #ccc; padding: 10px; width: 100%; box-sizing: border-box;' %>
+    </div>
+
+    <div style="margin-top: 10px;">
+      <label>Valor:</label>
+      <%= text_field_tag :valor,
+          nil,
+          placeholder: "Ingrese el nuevo valor",
+          style: 'border-radius: 20px; border: 1px solid #ccc; padding: 10px; width: 100%; box-sizing: border-box;' %>
+    </div>
+
+    <div style="margin-top: 20px; display: flex;">
+      <%= link_to 'Cancelar', '/inventario/index',
+          style: 'padding: 8px 12px; background-color: #ccc; color: black; text-decoration: none; border-radius: 10px; display: inline-block; line-height: 32px;' %>
+
+      <%= submit_tag 'Guardar Cambios',
+          style: 'padding: 8px 12px; background-color: rgb(27, 154, 160); color: white; border: none; border-radius: 10px; cursor: pointer; margin-left: auto;' %>
+    </div>
+  <% end %>
+</div>
