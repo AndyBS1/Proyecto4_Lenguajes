@@ -2,13 +2,13 @@
   {
     "codigo": "T001",
     "nombre": "Monitor",
-    "precio_unitario": 250.0,
+    "precio": 250.0,
     "stock": 10
   },
   {
     "codigo": "T002",
     "nombre": "Teclado",
-    "precio_unitario": 35.0,
+    "precio": 35.0,
     "stock": 2
   }
 ]

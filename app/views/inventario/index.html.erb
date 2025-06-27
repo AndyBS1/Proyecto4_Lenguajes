@@ -18,18 +18,18 @@
   <tbody>
     <% @productos.each do |producto| %>
       <tr>
-        <td><%= producto[:codigo] %></td>
-        <td><%= producto[:nombre] %></td>
-        <td>₡<%= producto[:precio_unitario] %></td>
+        <td><%= producto.codigo %></td>
+        <td><%= producto.nombre %></td>
+        <td><%= producto.precio %> $</td>
         <td>
-          <%= producto[:stock] %>
-          <% if producto[:stock].to_i <= 3 %>
-            <span style="color: red;">Alerta! Stock Bajo</span>
+          <%= producto.stock %>
+          <% if producto.stock <= 3 %>
+            <span style="color: red;">¡Alerta! Stock bajo</span>
           <% end %>
         </td>
         <td>
           <div style="text-align: center;">
-          <%= link_to '*', "/inventario/editar?codigo=#{producto[:codigo]}", 
+          <%= link_to '*', "/inventario/editar?codigo=#{producto.codigo}", 
               style: 'color:rgb(27, 154, 160); text-decoration: none; text-align: center;' %>
         </td>
           </div>
