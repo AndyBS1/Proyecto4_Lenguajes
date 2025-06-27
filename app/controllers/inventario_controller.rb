@@ -12,6 +12,31 @@ class InventarioController < ApplicationController
     end
   end
 
+  def crear
+    path = Rails.root.join("app", "data", "productos.json")
+
+    productos = if File.exist?(path)
+                  file = File.read(path)
+                  JSON.parse(file)
+    else
+                  []
+    end
+
+    # Se crea la nueva instancia
+    nuevo_producto = Producto.new(
+      codigo: params[:codigo],
+      nombre: params[:nombre],
+      precio: params[:precio],
+      stock: params[:stock]
+    )
+
+    productos << nuevo_producto.to_hash
+
+    File.write(path, JSON.pretty_generate(productos))
+
+    redirect_to "/inventario/index", notice: "Producto agregado correctamente"
+  end
+
   def agregar
   end
 

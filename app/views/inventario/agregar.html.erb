@@ -1,2 +1,36 @@
-<h1>Inventario#agregar</h1>
-<p>Find me in app/views/inventario/agregar.html.erb</p>
+<h1 style="text-align: center;">Agregar Producto</h1>
+
+<div style="
+  background-color: #f0f0f0; padding: 30px;
+  max-width: 500px; margin: 40px auto;
+  border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+">
+  <%= form_with url: '/inventario/crear', method: :post do %>
+    <div style="margin-bottom: 15px;">
+      <label>Código:</label>
+      <%= text_field_tag :codigo, nil, style: 'border-radius: 20px; border: 1px solid #ccc; padding: 10px; width: 100%; box-sizing: border-box;' %>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label>Nombre:</label>
+      <%= text_field_tag :nombre, nil, style: 'border-radius: 20px; border: 1px solid #ccc; padding: 10px; width: 100%; box-sizing: border-box;' %>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label>Precio:</label>
+      <%= text_field_tag :precio, nil, style: 'border-radius: 20px; border: 1px solid #ccc; padding: 10px; width: 100%; box-sizing: border-box;' %>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label>Stock:</label>
+      <%= text_field_tag :stock, nil, style: 'border-radius: 20px; border: 1px solid #ccc; padding: 10px; width: 100%; box-sizing: border-box;' %>
+    </div>
+
+    <div style="margin-top: 20px; display: flex; gap: 10px;">
+      <%= link_to 'Cancelar', '/inventario/index',
+          style: 'padding: 8px 12px; background-color: #ccc; color: black; text-decoration: none; border-radius: 10px; display: inline-block; line-height: 32px;' %>
+
+      <%= submit_tag 'Confirmar', style: 'padding: 8px 12px; background-color: rgb(27, 154, 160); color: white; border: none; border-radius: 10px; cursor: pointer; margin-left: auto;' %>
+    </div>
+  <% end %>
+</div>

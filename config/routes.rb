@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get "inventario/index"
   get "inventario/agregar"
   get "inventario/editar"
+
+  # Ruta de Post
+  post "inventario/crear", to: "inventario#crear"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

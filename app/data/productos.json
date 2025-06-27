@@ -10,5 +10,11 @@
     "nombre": "Teclado",
     "precio": 35.0,
     "stock": 2
+  },
+  {
+    "codigo": "T003",
+    "nombre": "HP Laptop 1",
+    "precio": 300.0,
+    "stock": 5
   }
 ]
