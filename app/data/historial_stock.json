@@ -1,3 +1,14 @@
 [
-    
+  {
+    "codigo_producto": "T005",
+    "cambio": 2,
+    "motivo": "Ajuste en el stock",
+    "fecha": "28-06-2025 13:09:21"
+  },
+  {
+    "codigo_producto": "T004",
+    "cambio": -2,
+    "motivo": "Ajuste en el stock",
+    "fecha": "28-06-2025 13:10:02"
+  }
 ]

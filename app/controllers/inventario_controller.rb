@@ -56,6 +56,7 @@ class InventarioController < ApplicationController
     campo = params[:campo]
     valor = params[:valor]
 
+    historial_path = Rails.root.join("app", "data", "historial_stock.json")
     path = Rails.root.join("app", "data", "productos.json")
     productos = File.exist?(path) ? JSON.parse(File.read(path), symbolize_names: true) : []
 
@@ -76,6 +77,17 @@ class InventarioController < ApplicationController
       end
     when "stock"
       if valor.to_i.to_s == valor
+        valor_anterior = producto[:stock].to_i
+        nuevo_stock = valor.to_i
+        diferencia = nuevo_stock - valor_anterior
+
+        if diferencia != 0
+          historial = File.exist?(historial_path) ? JSON.parse(File.read(historial_path)) : []
+          registro = HistorialStock.new(codigo_producto: codigo, cambio: diferencia).to_hash
+          historial << registro
+          File.write(historial_path, JSON.pretty_generate(historial))
+        end
+
         producto[:stock] = valor.to_i
       else
         flash[:alert] = "El stock debe ser un número entero válido."

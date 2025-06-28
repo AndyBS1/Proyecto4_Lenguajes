@@ -21,12 +21,12 @@
     "codigo": "T004",
     "nombre": "Camara",
     "precio": 75.0,
-    "stock": 10
+    "stock": 8
   },
   {
     "codigo": "T005",
     "nombre": "RAM 8GB",
     "precio": 25.0,
-    "stock": 1
+    "stock": 3
   }
 ]
