@@ -91,6 +91,17 @@ class InventarioController < ApplicationController
     redirect_to "/inventario/index"
   end
 
+  def historial
+    path = Rails.root.join("app", "data", "historial_stock.json")
+
+    if File.exist?(path)
+      file = File.read(path)
+      @historial = JSON.parse(file, symbolize_names: true)
+    else
+      @historial = []
+    end
+  end
+
   def agregar
   end
 

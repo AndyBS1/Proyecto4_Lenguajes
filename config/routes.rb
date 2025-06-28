@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "inventario/index"
   get "inventario/agregar"
   get "inventario/editar", to: "inventario#editar"
+  get "inventario/historial"
 
   # Ruta de Post
   post "inventario/crear", to: "inventario#crear"
