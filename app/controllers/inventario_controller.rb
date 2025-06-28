@@ -132,6 +132,18 @@ class InventarioController < ApplicationController
     redirect_to "/inventario/historial"
   end
 
+  def eliminar
+    codigo = params[:codigo]
+    path = Rails.root.join("app", "data", "productos.json")
+
+    productos = File.exist?(path) ? JSON.parse(File.read(path), symbolize_names: true) : []
+    # se elimina el producto
+    productos.reject! { |p| p[:codigo] == codigo }
+
+    File.write(path, JSON.pretty_generate(productos))
+    redirect_to "/inventario/index", notice: "Producto eliminado correctamente."
+  end
+
   def agregar
   end
 

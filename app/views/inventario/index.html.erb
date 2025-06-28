@@ -25,6 +25,7 @@
         <th>Precio Unitario</th>
         <th>Stock</th>
         <th>Editar</th>
+        <th>Eliminar</th>
       </tr>
     </thead>
     <tbody>
@@ -42,9 +43,21 @@
           <td>
             <div style="text-align: center;">
             <%= link_to '*', "/inventario/editar?codigo=#{producto.codigo}", 
-                style: 'color:rgb(27, 154, 160); text-decoration: none; text-align: center;' %>
-          </td>
+                style: 'background-color:rgb(27, 154, 160); color: white;
+                text-decoration: none; border-radius: 5px; padding: 5px 10px; 
+                cursor: pointer; text-align: center;' %>
             </div>
+          </td>
+          <td>
+            <div style="text-align: center;">
+              <%= button_to 'X', "/inventario/eliminar?codigo=#{producto.codigo}",
+                    method: :delete,
+                    form: { data: { turbo: false } }, 
+                    style: 'background-color: red; color: white; border: none; 
+                    border-radius: 5px; padding: 5px 10px; cursor: pointer;' %>
+            </div>
+          </td>
+            
         </tr>
       <% end %>
     </tbody>

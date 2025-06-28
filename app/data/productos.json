@@ -28,5 +28,11 @@
     "nombre": "RAM 8GB",
     "precio": 25.0,
     "stock": 3
+  },
+  {
+    "codigo": "T006",
+    "nombre": "Audifonos HyperX",
+    "precio": 40.0,
+    "stock": 15
   }
 ]
