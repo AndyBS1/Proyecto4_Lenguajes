@@ -23,12 +23,20 @@
         </tr>
       </thead>
       <tbody>
-        <% @historial.each do |registro| %>
+        <% @historial.each do |registro, index| %>
           <tr>
             <td><%= registro[:codigo_producto] %></td>
             <td><%= registro[:cambio] %></td>
-            <td><%= registro[:motivo] %></td>
+            <td>
+                <%= form_with url: actualizar_motivo_path, method: :patch, local: true do %>
+                    <%= hidden_field_tag :index, index %>
+                    <%= text_field_tag :motivo, registro[:motivo], style: "width: 90%;" %>
+            </td>
             <td><%= registro[:fecha] %></td>
+            <td>
+                <%= submit_tag 'Guardar', style: "padding: 4px 10px; background-color: #1b9aa0; color: white; border: none; border-radius: 5px;" %>
+            <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

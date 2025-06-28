@@ -114,6 +114,24 @@ class InventarioController < ApplicationController
     end
   end
 
+  def actualizar_motivo
+    index = params[:index].to_i
+    nuevo_motivo = params[:motivo]
+
+    historial_path = Rails.root.join("app", "data", "historial_stock.json")
+    historial = File.exist?(historial_path) ? JSON.parse(File.read(historial_path), symbolize_names: true) : []
+
+    if historial[index]
+      historial[index][:motivo] = nuevo_motivo
+      File.write(historial_path, JSON.pretty_generate(historial))
+      flash[:notice] = "Motivo actualizado correctamente."
+    else
+      flash[:alert] = "Registro no encontrado."
+    end
+
+    redirect_to "/inventario/historial"
+  end
+
   def agregar
   end
 

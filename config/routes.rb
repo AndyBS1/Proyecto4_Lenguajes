@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   # Update
   patch "/inventario/:codigo", to: "inventario#actualizar", as: :actualizar_producto
+  patch "/inventario/historial/actualizar_motivo", to: "inventario#actualizar_motivo", as: "actualizar_motivo"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
