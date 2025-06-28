@@ -21,7 +21,7 @@
 </table>
 
 <div style="max-width: 600px; margin: 0 auto; background-color: #f0f0f0; padding: 20px; border-radius: 12px;">
-  <%= form_with url: "/inventario/actualizar", method: :post do %>
+  <%= form_with url: actualizar_producto_path(@producto.codigo), method: :patch do %>
     <%= hidden_field_tag :codigo, @producto.codigo %>
 
     <div>

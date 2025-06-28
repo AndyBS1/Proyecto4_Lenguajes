@@ -52,47 +52,42 @@ class InventarioController < ApplicationController
   end
 
   def actualizar
-    path = Rails.root.join("app", "data", "productos.json")
-    productos = File.exist?(path) ? JSON.parse(File.read(path), symbolize_names: true) : []
-
-    producto = productos.find { |p| p[:codigo] == params[:codigo] }
-
-    if producto.nil?
-      flash[:alert] = "Producto no encontrado."
-      redirect_to "/inventario/index"
-      return
-    end
-
+    codigo = params[:codigo]
     campo = params[:campo]
     valor = params[:valor]
 
-    case campo
-    when "precio"
-      if valor.to_f <= 0
-        flash[:alert] = "El precio debe ser un número positivo."
-        redirect_to "/inventario/editar?codigo=#{params[:codigo]}"
-        return
-      end
-      producto[:precio] = valor.to_f
-    when "stock"
-      if valor.to_i < 0
-        flash[:alert] = "El stock debe ser un número entero positivo."
-        redirect_to "/inventario/editar?codigo=#{params[:codigo]}"
-        return
-      end
-      producto[:stock] = valor.to_i
-    else
-      flash[:alert] = "Campo inválido seleccionado."
-      redirect_to "/inventario/editar?codigo=#{params[:codigo]}"
-      return
+    path = Rails.root.join("app", "data", "productos.json")
+    productos = File.exist?(path) ? JSON.parse(File.read(path), symbolize_names: true) : []
+
+    producto = productos.find { |p| p[:codigo] == codigo }
+
+    unless producto
+      flash[:alert] = "Producto no encontrado."
+      redirect_to "/inventario/index" and return
     end
 
-    # Se reemplaza la información del producto por el antiguo
-    productos.map! { |p| p[:codigo] == producto[:codigo] ? producto : p }
+    case campo
+    when "precio"
+      if valor.to_f.to_s == valor || valor.to_i.to_s == valor
+        producto[:precio] = valor.to_f
+      else
+        flash[:alert] = "El precio debe ser un número válido."
+        redirect_to "/inventario/editar?codigo=#{codigo}" and return
+      end
+    when "stock"
+      if valor.to_i.to_s == valor
+        producto[:stock] = valor.to_i
+      else
+        flash[:alert] = "El stock debe ser un número entero válido."
+        redirect_to "/inventario/editar?codigo=#{codigo}" and return
+      end
+    else
+      flash[:alert] = "Campo inválido."
+      redirect_to "/inventario/editar?codigo=#{codigo}" and return
+    end
 
     File.write(path, JSON.pretty_generate(productos))
-
-    flash[:notice] = "Producto actualizado correctamente."
+    flash[:notice] = "Producto actualizado exitosamente."
     redirect_to "/inventario/index"
   end
 

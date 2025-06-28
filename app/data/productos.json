@@ -2,7 +2,7 @@
   {
     "codigo": "T001",
     "nombre": "Monitor",
-    "precio": 250.0,
+    "precio": 190.0,
     "stock": 10
   },
   {
@@ -21,6 +21,6 @@
     "codigo": "T004",
     "nombre": "Camara",
     "precio": 75.0,
-    "stock": 5
+    "stock": 10
   }
 ]
