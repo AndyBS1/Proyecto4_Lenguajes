@@ -1,39 +1,53 @@
-<div style="display: flex; align-items: center; margin-bottom: 20px;">
-  <h1 style="margin: 0;">Inventario</h1>
-  <%= link_to ' + ', '/inventario/agregar',
-        style: 'margin-left: 260px; background-color:rgb(27, 154, 160); color: white; padding: 10px 15px;
+<div style="background-color: #f0f0f0; padding: 20px;
+  max-width: 500px; margin: 40px auto;
+  border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+
+  <div style="position: relative; text-align: center; margin-bottom: 20px;">
+    <h1 style="margin: 0;">Inventario</h1>
+    
+    <%= link_to ' + ', '/inventario/agregar',
+        style: 'position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+                background-color:rgb(27, 154, 160); color: white; padding: 10px 15px;
                 border: none; border-radius: 5px; text-decoration: none; font-weight: bold;' %>
+  </div>
 </div>
 
-<table border="1" cellpadding="5" cellspacing="0">
-  <thead>
-    <tr>
-      <th>Código</th>
-      <th>Nombre</th>
-      <th>Precio Unitario</th>
-      <th>Stock</th>
-      <th>Editar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @productos.each do |producto| %>
+<div style="
+  background-color: #f0f0f0; padding: 30px;
+  max-width: 500px; margin: 40px auto;
+  border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+">
+  <table border="1" cellpadding="5" cellspacing="0">
+    <thead>
       <tr>
-        <td><%= producto.codigo %></td>
-        <td><%= producto.nombre %></td>
-        <td><%= producto.precio %> $</td>
-        <td>
-          <%= producto.stock %>
-          <% if producto.stock <= 3 %>
-            <span style="color: red;">¡Alerta! Stock bajo</span>
-          <% end %>
-        </td>
-        <td>
-          <div style="text-align: center;">
-          <%= link_to '*', "/inventario/editar?codigo=#{producto.codigo}", 
-              style: 'color:rgb(27, 154, 160); text-decoration: none; text-align: center;' %>
-        </td>
-          </div>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Precio Unitario</th>
+        <th>Stock</th>
+        <th>Editar</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @productos.each do |producto| %>
+        <tr>
+          <td><%= producto.codigo %></td>
+          <td><%= producto.nombre %></td>
+          <td><%= producto.precio %> $</td>
+          <td>
+            <%= producto.stock %>
+            <% if producto.stock <= 3 %>
+              <span style="color: red;">¡Alerta! Stock bajo</span>
+            <% end %>
+          </td>
+          <td>
+            <div style="text-align: center;">
+            <%= link_to '*', "/inventario/editar?codigo=#{producto.codigo}", 
+                style: 'color:rgb(27, 154, 160); text-decoration: none; text-align: center;' %>
+          </td>
+            </div>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
