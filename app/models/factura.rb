@@ -1,12 +1,11 @@
 class Factura
-  attr_accessor :numero, :fecha, :cliente_id, :items, :estado
+  attr_accessor :numero, :fecha, :cliente_id, :items
 
   def initialize(numero:, fecha: Time.now, cliente_id:, items: [], estado: "pendiente")
     @numero = numero
     @fecha = fecha
     @cliente_id = cliente_id
     @items = items || []
-    @estado = estado
   end
 
   def agregar_item(item)
@@ -38,8 +37,7 @@ end
       numero: @numero,
       fecha: @fecha.strftime("%Y-%m-%d %H:%M:%S"),
       cliente_id: @cliente_id,
-      items: @items.map(&:to_hash),
-      estado: @estado
+      items: @items.map(&:to_hash)
     }
   end
 end

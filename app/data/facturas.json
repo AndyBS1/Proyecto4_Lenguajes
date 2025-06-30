@@ -26,5 +26,69 @@
       }
     ],
     "estado": "pendiente"
+  },
+  {
+    "numero": 3,
+    "fecha": "2025-06-30 09:53:00",
+    "cliente_id": "3690f4e7-101c-4b05-9c64-125581e77f73",
+    "items": [
+      {
+        "producto_codigo": "T003",
+        "cantidad": 3,
+        "precio_unitario": 300.0,
+        "impuesto_id": "c85b94f8-ee1a-4591-9754-8a1df61ca1c3"
+      },
+      {
+        "producto_codigo": "T002",
+        "cantidad": 4,
+        "precio_unitario": 35.0,
+        "impuesto_id": "c85b94f8-ee1a-4591-9754-8a1df61ca1c3"
+      }
+    ]
+  },
+  {
+    "numero": 4,
+    "fecha": "2025-06-30 09:58:19",
+    "cliente_id": "398c4229-b30f-4170-bb21-b0154efe6e17",
+    "items": [
+      {
+        "producto_codigo": "T002",
+        "cantidad": 3,
+        "precio_unitario": 35.0,
+        "impuesto_id": null
+      }
+    ]
+  },
+  {
+    "numero": 5,
+    "fecha": "2025-06-30 09:59:26",
+    "cliente_id": "398c4229-b30f-4170-bb21-b0154efe6e17",
+    "items": [
+      {
+        "producto_codigo": "T001",
+        "cantidad": 2,
+        "precio_unitario": 190.0,
+        "impuesto_id": "31b17e42-195e-40cd-853d-3286a6db0a22"
+      }
+    ]
+  },
+  {
+    "numero": 6,
+    "fecha": "2025-06-30 10:03:51",
+    "cliente_id": "398c4229-b30f-4170-bb21-b0154efe6e17",
+    "items": [
+      {
+        "producto_codigo": "T001",
+        "cantidad": 1,
+        "precio_unitario": 190.0,
+        "impuesto_id": "c85b94f8-ee1a-4591-9754-8a1df61ca1c3"
+      },
+      {
+        "producto_codigo": "T004",
+        "cantidad": 3,
+        "precio_unitario": 75.0,
+        "impuesto_id": "31b17e42-195e-40cd-853d-3286a6db0a22"
+      }
+    ]
   }
 ]

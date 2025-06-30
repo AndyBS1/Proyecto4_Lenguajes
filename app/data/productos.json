@@ -3,25 +3,25 @@
     "codigo": "T001",
     "nombre": "Monitor",
     "precio": 190.0,
-    "stock": 10
+    "stock": 7
   },
   {
     "codigo": "T002",
     "nombre": "Teclado",
     "precio": 35.0,
-    "stock": 0
+    "stock": -7
   },
   {
     "codigo": "T003",
     "nombre": "HP Laptop 1",
     "precio": 300.0,
-    "stock": 5
+    "stock": 2
   },
   {
     "codigo": "T004",
     "nombre": "Camara",
     "precio": 75.0,
-    "stock": 3
+    "stock": 0
   },
   {
     "codigo": "T005",

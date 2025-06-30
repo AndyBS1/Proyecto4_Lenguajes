@@ -118,21 +118,23 @@
     .col-md-1 {
       flex: 0 0 8.333333%;
       max-width: 8.333333%;
-      padding: 0 15px;
+      padding: 0 15px 10px 15px;
     }
     .d-flex {
       display: flex !important;
     }
     .align-items-end {
       align-items: flex-end !important;
+      padding: 0 15px 10px 15px;
     }
     .item {
       background-color: #f8f9fa;
-      padding: 15px;
+      padding: 25px 20px;
       border-radius: 8px;
-      margin-bottom: 15px;
+      margin-bottom: 30px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
+
     h3 {
       color: #2c3e50;
       margin-bottom: 20px;
@@ -186,8 +188,8 @@
           <input type="number" name="items[][cantidad]" class="form-control cantidad" min="1" value="1" style="display: block; width: 100%; padding: 0.75rem 1rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.5rem;">
         </div>
         <div class="col-md-3">
-          <label style="display: inline-block; margin-bottom: 0.5rem; font-weight: 600; color: #495057;">Impuesto</label>
-          <select name="items[][impuesto_id]" class="form-control" style="display: block; width: 100%; padding: 0.75rem 1rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.5rem;">
+          <label style="display: inline-block; margin-bottom: 0.5rem; font-weight: 600; margin-left: 30px; color: #495057;">Impuesto</label>
+          <select name="items[][impuesto_id]" class="form-control" style="display: block; width: 100%; padding: 0.75rem 1rem; margin-left: 30px; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.5rem;">
             <option value="">Ninguno</option>
             <% @impuestos.each do |impuesto| %>
               <option value="<%= impuesto[:id] %>"><%= impuesto[:nombre] %> (<%= impuesto[:porcentaje] %>%)</option>
@@ -199,7 +201,8 @@
           <input type="text" class="form-control precio-unitario" readonly style="display: block; width: 100%; padding: 0.75rem 1rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #495057; background-color: #f8f9fa; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.5rem;">
         </div>
         <div class="col-md-1 d-flex align-items-end" style="display: flex !important; align-items: flex-end !important; padding: 0 15px;">
-          <button type="button" class="btn btn-danger btn-remove-item" style="display: inline-block; font-weight: 500; text-align: center; white-space: nowrap; vertical-align: middle; user-select: none; border: 1px solid transparent; padding: 0.75rem; font-size: 1rem; line-height: 1.5; border-radius: 0.5rem; color: #fff; background-color: #e74c3c; border-color: #c0392b; cursor: pointer;">X</button>
+        <label style="display: inline-block; margin-bottom: 0.5rem; font-weight: 600; margin-left: 50px; color: #495057;">Eliminar Producto</label>
+        <button type="button" class="btn btn-danger btn-remove-item" style="display: inline-block; font-weight: 500; margin-left: 30px; text-align: center; white-space: nowrap; vertical-align: middle; user-select: none; border: 1px solid transparent; padding: 0.75rem; font-size: 1rem; line-height: 1.5; border-radius: 0.5rem; color: #fff; background-color: #e74c3c; border-color: #c0392b; cursor: pointer;">X</button>
         </div>
       </div>
     </div>
