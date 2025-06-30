@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "menu/index"
+  get "facturas/index"
+  get "facturas/nueva"
+  get "facturas/generar"
   get "inventario/index"
   get "inventario/agregar"
   get "inventario/editar", to: "inventario#editar"
@@ -48,5 +52,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "menu#index"
 end
