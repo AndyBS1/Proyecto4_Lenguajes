@@ -1,0 +1,106 @@
+<div class="container" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: 30px auto; padding: 30px; box-shadow: 0 0 25px rgba(0,0,0,0.08); border-radius: 10px; background: white; border: 1px solid #e0e0e0;">
+  <style>
+    .form-header {
+      color: #2c3e50;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #3498db;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-control {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .form-control:focus {
+      color: #495057;
+      background-color: #fff;
+      border-color: #3498db;
+      outline: 0;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    .btn {
+      display: inline-block;
+      font-weight: 500;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      user-select: none;
+      border: 1px solid transparent;
+      padding: 12px 24px;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      color: #fff;
+      background-color: #3498db;
+      border-color: #2980b9;
+      width: 100%;
+      margin-top: 10px;
+    }
+    .btn-primary:hover {
+      background-color: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(41, 128, 185, 0.3);
+    }
+    .input-group {
+      display: flex;
+      align-items: center;
+    }
+    .input-group-text {
+      background-color: #e9ecef;
+      border: 1px solid #ced4da;
+      border-left: none;
+      padding: 12px 16px;
+      font-size: 1rem;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    .input-group input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  </style>
+
+  <h1 class="form-header">Nuevo Impuesto</h1>
+
+  <%= form_with(url: impuestos_crear_path, method: :post) do |form| %>
+    <div class="form-group mb-3">
+      <%= form.label :nombre, "Nombre", class: "required-field" %>
+      <%= form.text_field :nombre, class: 'form-control', required: true %>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= form.label :porcentaje, "Porcentaje", class: "required-field" %>
+      <div class="input-group">
+        <%= form.number_field :porcentaje, step: '0.01', class: 'form-control', required: true %>
+        <span class="input-group-text">%</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit "Guardar Impuesto", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

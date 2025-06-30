@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial, sans-serif; font-size: 12px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #000; padding: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Factura #<%= @factura[:numero] %></h1>
+  <p><strong>Cliente:</strong> <%= @cliente[:nombre] %></p>
+
+  <h3>Detalle</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Impuesto</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items_con_detalles.each do |item| %>
+        <tr>
+          <td><%= item[:producto][:nombre] %></td>
+          <td><%= item[:cantidad] %></td>
+          <td>$<%= sprintf('%.2f', item[:precio_unitario]) %></td>
+          <td><%= item[:impuesto] ? "#{item[:impuesto][:porcentaje]}%" : "0%" %></td>
+          <td>$<%= sprintf('%.2f', item[:subtotal]) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p><strong>Subtotal:</strong> $<%= sprintf('%.2f', @subtotal) %></p>
+  <p><strong>Impuestos:</strong> $<%= sprintf('%.2f', @total_impuestos) %></p>
+  <p><strong>Total:</strong> $<%= sprintf('%.2f', @total) %></p>
+</body>
+</html>

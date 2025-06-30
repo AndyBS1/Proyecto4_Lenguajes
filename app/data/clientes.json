@@ -1,0 +1,23 @@
+[
+  {
+    "id": "88a68c4e-5dba-4893-b010-7aa6cb6f9251",
+    "nombre": "Emily Sanchez",
+    "direccion": "Cartago, Costa Rica",
+    "telefono": "64886041",
+    "email": "emily23@gmail.com"
+  },
+  {
+    "id": "398c4229-b30f-4170-bb21-b0154efe6e17",
+    "nombre": "Andres Bonilla",
+    "direccion": "Paraíso, Cartago",
+    "telefono": "65489675",
+    "email": "andresbonilla@gmail.com"
+  },
+  {
+    "id": "3690f4e7-101c-4b05-9c64-125581e77f73",
+    "nombre": "Grettel Orozco",
+    "direccion": "Cartago, Costa Rica",
+    "telefono": "86459678",
+    "email": "grettelo@gmail.com"
+  }
+]

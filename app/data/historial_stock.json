@@ -10,5 +10,29 @@
     "cambio": -2,
     "motivo": "Ajuste en el stock",
     "fecha": "28-06-2025 13:10:02"
+  },
+  {
+    "codigo_producto": "T002",
+    "cambio": -2,
+    "motivo": "Venta en factura 3",
+    "fecha": "29-06-2025 14:25:02"
+  },
+  {
+    "codigo_producto": "T004",
+    "cambio": -1,
+    "motivo": "Venta en factura 3",
+    "fecha": "29-06-2025 14:25:02"
+  },
+  {
+    "codigo_producto": "T004",
+    "cambio": -1,
+    "motivo": "Venta en factura 1",
+    "fecha": "29-06-2025 15:01:03"
+  },
+  {
+    "codigo_producto": "T004",
+    "cambio": -3,
+    "motivo": "Venta en factura 2",
+    "fecha": "29-06-2025 15:13:21"
   }
 ]

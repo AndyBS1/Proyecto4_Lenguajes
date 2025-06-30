@@ -1,2 +1,36 @@
-<h1>Facturas#nueva</h1>
-<p>Find me in app/views/facturas/nueva.html.erb</p>
+<h1>Nueva Factura</h1>
+
+<%= form_with url: "/facturas/crear", method: :post do %>
+  <div>
+    <label>Cliente:</label>
+    <input type="text" name="cliente" required />
+  </div>
+
+  <h3>Productos</h3>
+  <% @productos.each_with_index do |prod, i| %>
+    <div>
+      <label>
+        <input type="checkbox" name="productos_seleccionados[]" value="<%= i %>" />
+        <%= prod[:nombre] %> - $<%= prod[:precio] %>
+      </label>
+      <input type="hidden" name="lineas[][codigo]" value="<%= prod[:codigo] %>" />
+      <input type="hidden" name="lineas[][precio]" value="<%= prod[:precio] %>" />
+      <label>Cantidad:</label>
+      <input type="number" name="lineas[][cantidad]" min="1" value="1" />
+    </div>
+  <% end %>
+
+  <h3>Impuestos</h3>
+  <% @impuestos_config.each do |imp| %>
+    <div>
+      <label>
+        <input type="checkbox" name="impuestos[]" value="<%= "#{imp[:nombre]}:#{imp[:tasa]}" %>" />
+        <%= imp[:nombre] %> (<%= imp[:tasa] %>%)
+      </label>
+    </div>
+  <% end %>
+
+  <div>
+    <input type="submit" value="Generar Factura" />
+  </div>
+<% end %>

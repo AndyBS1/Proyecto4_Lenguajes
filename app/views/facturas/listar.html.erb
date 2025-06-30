@@ -1,0 +1,27 @@
+<h1>Facturas generadas</h1>
+
+<table border="1" cellpadding="8" cellspacing="0">
+  <tr>
+    <th>#</th>
+    <th>Cliente</th>
+    <th>Subtotal</th>
+    <th>Impuestos</th>
+    <th>Total</th>
+    <th>Acciones</th>
+  </tr>
+
+  <% @facturas.each do |factura| %>
+    <tr>
+      <td><%= factura[:numero] %></td>
+      <td><%= factura[:cliente] %></td>
+      <td>$<%= '%.2f' % factura[:subtotal] %></td>
+      <td>$<%= '%.2f' % factura[:total_impuestos] %></td>
+      <td>$<%= '%.2f' % factura[:total] %></td>
+
+      <td>
+        <%= link_to "Ver", "/facturas/ver?numero=#{factura[:numero]}" %> |
+        <%= link_to "Descargar PDF", "/facturas/pdf?numero=#{factura[:numero]}", target: "_blank" %>
+      </td>
+    </tr>
+  <% end %>
+</table>

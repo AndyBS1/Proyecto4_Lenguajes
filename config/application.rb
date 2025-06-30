@@ -1,4 +1,5 @@
 require_relative "boot"
+require "prawn/table"
 
 require "rails"
 # Pick the frameworks you want:

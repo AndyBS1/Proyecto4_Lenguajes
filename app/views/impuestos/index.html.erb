@@ -1,0 +1,70 @@
+<div class="container" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: 30px auto; padding: 30px; box-shadow: 0 0 25px rgba(0,0,0,0.08); border-radius: 10px; background: white; border: 1px solid #e0e0e0;">
+  <style>
+    .form-header {
+      color: #2c3e50;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #3498db;
+      text-align: center;
+    }
+    .btn-primary {
+      display: inline-block;
+      font-weight: 500;
+      text-align: center;
+      padding: 12px 24px;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: 8px;
+      color: #fff;
+      background-color: #3498db;
+      border: 1px solid #2980b9;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background-color: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(41, 128, 185, 0.3);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #dee2e6;
+    }
+    th {
+      background-color: #f8f9fa;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+
+  <h1 class="form-header">Lista de Impuestos</h1>
+
+  <%= link_to '➕ Nuevo Impuesto', impuestos_nuevo_path, class: 'btn btn-primary' %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Porcentaje</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% (@impuestos || []).each do |impuesto| %>
+        <tr>
+          <td><%= impuesto[:nombre] %></td>
+          <td><%= impuesto[:porcentaje] %> %</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

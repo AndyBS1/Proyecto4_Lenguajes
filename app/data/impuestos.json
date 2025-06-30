@@ -1,0 +1,12 @@
+[
+  {
+    "id": "c85b94f8-ee1a-4591-9754-8a1df61ca1c3",
+    "nombre": "IVA (Impuesto al Valor Agregado)",
+    "porcentaje": 13.0
+  },
+  {
+    "id": "31b17e42-195e-40cd-853d-3286a6db0a22",
+    "nombre": "Exento",
+    "porcentaje": 9.0
+  }
+]

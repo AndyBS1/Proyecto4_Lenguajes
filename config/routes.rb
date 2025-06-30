@@ -1,12 +1,22 @@
 Rails.application.routes.draw do
-  get "facturas/index"
-  get "facturas/nueva"
-  get "facturas/generar"
   get "inventario/index"
   get "inventario/agregar"
   get "inventario/editar", to: "inventario#editar"
   get "inventario/historial"
-
+  get "/facturas/pdf", to: "facturas#pdf"
+  get "/facturacion", to: "facturacion#index", as: "facturacion_index"
+  get "/facturacion/nueva", to: "facturacion#nueva", as: "facturacion_nueva"
+  post "/facturacion/crear", to: "facturacion#crear", as: "facturacion_crear"
+  get "/facturacion/:numero", to: "facturacion#mostrar", as: "facturacion_mostrar"
+  get "/facturacion/:numero/pdf", to: "facturacion#pdf", as: "facturacion_pdf"
+  # Rutas para clientes
+  get "/clientes", to: "clientes#index", as: "clientes_index"
+  get "/clientes/nuevo", to: "clientes#nuevo", as: "clientes_nuevo"
+  post "/clientes/crear", to: "clientes#crear", as: "clientes_crear"
+  # Rutas para impuestos
+  get "/impuestos", to: "impuestos#index", as: "impuestos_index"
+  get "/impuestos/nuevo", to: "impuestos#nuevo", as: "impuestos_nuevo"
+  post "/impuestos/crear", to: "impuestos#crear", as: "impuestos_crear"
   # Ruta de Post
   post "inventario/crear", to: "inventario#crear"
   post "/inventario/actualizar", to: "inventario#actualizar"
@@ -17,6 +27,15 @@ Rails.application.routes.draw do
 
   # Delete
   delete "/inventario/eliminar", to: "inventario#eliminar", as: "eliminar_producto"
+
+  resources :facturacion, only: [ :index ] do
+    collection do
+      get "nueva"
+      post "crear"
+      get ":numero", to: "facturacion#mostrar", as: "mostrar"
+      get ":numero/pdf", to: "facturacion#pdf", as: "pdf"
+    end
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

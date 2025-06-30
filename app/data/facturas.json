@@ -1,0 +1,30 @@
+[
+  {
+    "numero": 1,
+    "fecha": "2025-06-29 15:01:03",
+    "cliente_id": "88a68c4e-5dba-4893-b010-7aa6cb6f9251",
+    "items": [
+      {
+        "producto_codigo": "T004",
+        "cantidad": 1,
+        "precio_unitario": 75.0,
+        "impuesto_id": "c85b94f8-ee1a-4591-9754-8a1df61ca1c3"
+      }
+    ],
+    "estado": "pendiente"
+  },
+  {
+    "numero": 2,
+    "fecha": "2025-06-29 15:13:21",
+    "cliente_id": "88a68c4e-5dba-4893-b010-7aa6cb6f9251",
+    "items": [
+      {
+        "producto_codigo": "T004",
+        "cantidad": 3,
+        "precio_unitario": 75.0,
+        "impuesto_id": "c85b94f8-ee1a-4591-9754-8a1df61ca1c3"
+      }
+    ],
+    "estado": "pendiente"
+  }
+]

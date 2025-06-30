@@ -1,0 +1,180 @@
+<div class="container" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 1200px; margin: 30px auto; padding: 30px; box-shadow: 0 0 25px rgba(0,0,0,0.08); border-radius: 10px; background: white; border: 1px solid #e0e0e0;">
+  <style>
+    .invoice-header {
+      color: #2c3e50;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #3498db;
+    }
+    .info-section {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .info-section h3 {
+      color: #3498db;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 8px;
+    }
+    .info-section p {
+      margin-bottom: 8px;
+    }
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 0.95em;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    .styled-table thead tr {
+      background-color: #3498db;
+      color: #ffffff;
+      text-align: left;
+      font-weight: bold;
+    }
+    .styled-table th,
+    .styled-table td {
+      padding: 12px 15px;
+      border: 1px solid #e0e0e0;
+    }
+    .styled-table tbody tr:nth-of-type(even) {
+      background-color: #f8f9fa;
+    }
+    .styled-table tbody tr:hover {
+      background-color: #e1f5fe;
+    }
+    .styled-table tfoot tr {
+      background-color: #f1f1f1;
+      font-weight: bold;
+    }
+    .styled-table tfoot tr:last-child {
+      background-color: #e9ecef;
+      font-size: 1.05em;
+    }
+    .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      margin-right: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      color: #fff;
+      background-color: #3498db;
+      border-color: #2980b9;
+    }
+    .btn-primary:hover {
+      background-color: #2980b9;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(41, 128, 185, 0.3);
+    }
+    .btn-secondary {
+      color: #fff;
+      background-color: #6c757d;
+      border-color: #5a6268;
+    }
+    .btn-secondary:hover {
+      background-color: #5a6268;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+    }
+    .text-end {
+      text-align: right !important;
+    }
+    .mb-4 {
+      margin-bottom: 1.5rem !important;
+    }
+    strong {
+      color: #2c3e50;
+    }
+  </style>
+
+  <h1 class="invoice-header">Factura #<%= @factura[:numero] %></h1>
+  
+  <div class="row mb-4" style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
+    <div class="col-md-6" style="flex: 0 0 50%; max-width: 50%; padding: 0 15px;">
+      <div class="info-section">
+        <h3>Información de la Factura</h3>
+        <p><strong>Fecha:</strong> <%= @factura[:fecha] %></p>
+        <p><strong>Estado:</strong> <%= @factura[:estado] %></p>
+      </div>
+    </div>
+    <div class="col-md-6" style="flex: 0 0 50%; max-width: 50%; padding: 0 15px;">
+      <div class="info-section">
+        <h3>Cliente</h3>
+        <p><strong>Nombre:</strong> <%= @cliente[:nombre] %></p>
+        <p><strong>Dirección:</strong> <%= @cliente[:direccion] %></p>
+        <% if @cliente[:telefono] %>
+          <p><strong>Teléfono:</strong> <%= @cliente[:telefono] %></p>
+        <% end %>
+        <% if @cliente[:email] %>
+          <p><strong>Email:</strong> <%= @cliente[:email] %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Impuesto</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items_con_detalles.each do |item| %>
+        <tr>
+          <td><%= item[:producto][:codigo] %></td>
+          <td><%= item[:producto][:nombre] %></td>
+          <td><%= item[:cantidad] %></td>
+          <td>$<%= '%.2f' % item[:precio_unitario] %></td>
+          <td>
+            <% if item[:impuesto] %>
+              <%= item[:impuesto][:nombre] %> (<%= item[:impuesto][:porcentaje] %>%)
+            <% else %>
+              Ninguno
+            <% end %>
+          </td>
+          <td>$<%= '%.2f' % item[:subtotal] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5" class="text-end"><strong>Subtotal:</strong></td>
+        <td>$<%= '%.2f' % @subtotal %></td>
+      </tr>
+      <tr>
+        <td colspan="5" class="text-end"><strong>Impuestos:</strong></td>
+        <td>$<%= '%.2f' % @total_impuestos %></td>
+      </tr>
+      <tr>
+        <td colspan="5" class="text-end"><strong>Total:</strong></td>
+        <td style="color: #27ae60; font-weight: bold;">$<%= '%.2f' % @total %></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div style="margin-top: 30px; text-align: right;">
+    <%= link_to 'Volver', facturacion_index_path, class: 'btn btn-secondary' %>
+    <%= link_to 'Generar PDF', facturacion_pdf_path(numero: @factura[:numero], format: :pdf), class: 'btn btn-primary', target: '_blank' %>
+  </div>
+</div>
