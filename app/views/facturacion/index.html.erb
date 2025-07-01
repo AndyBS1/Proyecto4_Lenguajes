@@ -75,6 +75,14 @@
     .btn-secondary:hover {
       background-color: #5a6268;
     }
+    .btn-danger {
+      color: #fff;
+      background-color: #e74c3c;
+      border-color: #c0392b;
+    }
+    .btn-danger:hover {
+      background-color: #c0392b;
+    }
     h1 {
       color: #2c3e50;
       margin-bottom: 20px;
@@ -115,8 +123,11 @@
             $<%= '%.2f' % subtotal %>
           </td>
           <td>
-            <%= link_to 'Ver', facturacion_mostrar_path(numero: factura[:numero]), class: 'btn btn-sm btn-info', style: "display: inline-block; padding: 5px 10px; font-size: 12px; line-height: 1.5; border-radius: 3px; color: #fff; background-color: #17a2b8; border-color: #117a8b; text-decoration: none;" %>
-            <%= link_to 'PDF', facturacion_pdf_path(numero: factura[:numero], format: :pdf), class: 'btn btn-sm btn-secondary', style: "display: inline-block; padding: 5px 10px; font-size: 12px; line-height: 1.5; border-radius: 3px; color: #fff; background-color: #6c757d; border-color: #5a6268; text-decoration: none;", target: '_blank' %>
+            <%= link_to 'Ver', facturacion_mostrar_path(numero: factura[:numero]), class: 'btn btn-sm btn-info', style: "..." %>
+            <%= link_to 'PDF', facturacion_pdf_path(numero: factura[:numero], format: :pdf), class: 'btn btn-sm btn-secondary', style: "...", target: '_blank' %>
+            <%= form_with url: facturacion_eliminar_path(numero: factura[:numero]), method: :delete, local: true, style: "display:inline;" do %>
+              <%= submit_tag 'Eliminar', class: 'btn btn-sm btn-danger', data: { confirm: '¿Estás seguro que deseas eliminar esta factura?' } %>
+            <% end %>
           </td>
         </tr>
       <% end %>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post "/facturacion/crear", to: "facturacion#crear", as: "facturacion_crear"
   get "/facturacion/:numero", to: "facturacion#mostrar", as: "facturacion_mostrar"
   get "/facturacion/:numero/pdf", to: "facturacion#pdf", as: "facturacion_pdf"
+  delete "facturacion/eliminar", to: "facturacion#eliminar", as: "facturacion_eliminar"
   # Rutas para clientes
   get "/clientes", to: "clientes#index", as: "clientes_index"
   get "/clientes/nuevo", to: "clientes#nuevo", as: "clientes_nuevo"
@@ -31,15 +32,6 @@ Rails.application.routes.draw do
 
   # Delete
   delete "/inventario/eliminar", to: "inventario#eliminar", as: "eliminar_producto"
-
-  resources :facturacion, only: [ :index ] do
-    collection do
-      get "nueva"
-      post "crear"
-      get ":numero", to: "facturacion#mostrar", as: "mostrar"
-      get ":numero/pdf", to: "facturacion#pdf", as: "pdf"
-    end
-  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -9,7 +9,7 @@
     "codigo": "T002",
     "nombre": "Teclado",
     "precio": 35.0,
-    "stock": -7
+    "stock": 30
   },
   {
     "codigo": "T003",
@@ -21,7 +21,7 @@
     "codigo": "T004",
     "nombre": "Camara",
     "precio": 75.0,
-    "stock": 0
+    "stock": 2
   },
   {
     "codigo": "T005",

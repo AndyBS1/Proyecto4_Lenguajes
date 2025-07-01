@@ -20,9 +20,28 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <body>
     <%= yield %>
+    <div style="padding: 20px; text-align: center; position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+      <%= link_to "🏠 Menú Principal", menu_index_path, class: "btn btn-success", 
+          style: "display: inline-flex; 
+                 align-items: center; 
+                 justify-content: center;
+                 padding: 12px 24px;
+                 font-size: 16px;
+                 font-weight: 600;
+                 border-radius: 50px;
+                 background-color: #28a745;
+                 border: none;
+                 color: white;
+                 text-decoration: none;
+                 box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+                 transition: all 0.3s ease;
+                 position: relative;
+                 overflow: hidden;" %>
+    </div>
   </body>
 </html>
