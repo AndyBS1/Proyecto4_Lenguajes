@@ -19,32 +19,14 @@ class FacturacionController < ApplicationController
     cliente_id = params[:cliente_id]
     items_data = params[:items] || []
 
-    errores_stock = []
-
     items = items_data.map do |item_data|
       producto = @productos.find { |p| p[:codigo] == item_data[:producto_codigo] }
-      cantidad = item_data[:cantidad].to_i
-
-      if producto.nil?
-        errores_stock << "Producto con código #{item_data[:producto_codigo]} no encontrado."
-        next
-      end
-
-      if cantidad > producto[:stock].to_i
-        errores_stock << "El producto '#{producto[:nombre]}' solo tiene #{producto[:stock]} unidades disponibles."
-      end
-
       FacturaItem.new(
         producto_codigo: item_data[:producto_codigo],
-        cantidad: cantidad,
+        cantidad: item_data[:cantidad],
         precio_unitario: producto[:precio],
         impuesto_id: item_data[:impuesto_id]
       )
-    end.compact
-
-    if errores_stock.any?
-      flash[:alert] = errores_stock.join("<br>").html_safe
-      redirect_to facturacion_nueva_path and return
     end
 
     factura = Factura.new(
@@ -55,7 +37,7 @@ class FacturacionController < ApplicationController
 
     facturas = cargar_facturas
     factura_hash = factura.to_hash
-    factura_hash[:items] ||= []
+    factura_hash[:items] ||= [] # Asegurar que items nunca sea nil
     facturas << factura_hash
 
     guardar_facturas(facturas)
@@ -63,7 +45,6 @@ class FacturacionController < ApplicationController
 
     redirect_to facturacion_index_path, notice: "Factura creada correctamente"
   end
-
 
   def mostrar
     @factura = cargar_facturas.find { |f| f[:numero] == params[:numero].to_i }
@@ -86,15 +67,6 @@ class FacturacionController < ApplicationController
       i[:impuesto] ? (i[:subtotal] * (i[:impuesto][:porcentaje].to_f / 100.0)) : 0
     end
     @total = @subtotal + @total_impuestos
-  end
-
-  def eliminar
-    numero = params[:numero].to_i
-    facturas = cargar_facturas
-    facturas.reject! { |factura| factura[:numero] == numero }
-    guardar_facturas(facturas)
-
-    redirect_to facturacion_index_path, notice: "Factura eliminada exitosamente."
   end
 
   def pdf

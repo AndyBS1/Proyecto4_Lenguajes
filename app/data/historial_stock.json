@@ -88,5 +88,11 @@
     "cambio": 3,
     "motivo": "Ajuste en el stock",
     "fecha": "30-06-2025 19:04:24"
+  },
+  {
+    "codigo_producto": "T002",
+    "cambio": -2,
+    "motivo": "Venta en factura 8",
+    "fecha": "30-06-2025 19:56:05"
   }
 ]
